@@ -11,61 +11,117 @@
     <div class="container">
 
         <h2 class="container__titulo">SonicPulse</h2>
-        <p class="container__subtitulo">SELECCIONA UNA PISTA PARA ESCUCHAR</p>
+        <div class="container__header-sub">
+            <p class="container__subtitulo">SELECCIONA UNA PISTA PARA ESCUCHAR</p>
+            <button class="btn-shuffle" aria-label="Shuffle tracks" title="Shuffle tracks">
+                <svg width="30" height="30" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6h-2.59c-.53 0-1.04.21-1.41.59L4.59 16H2v2h2.59c.53 0 1.04-.21 1.41-.59L15.41 8H18v3l4-4-4-4z"></path>
+                    <path d="M18 16h-1.59l-2.71-2.71-1.41 1.41L15 17.41c.37.37.89.59 1.41.59H18v3l4-4-4-4zM7.29 9.71 8.7 8.3 6.99 6.59C6.62 6.22 6.1 6 5.58 6H1.99v2h3.59z"></path>
+                </svg>
+            </button>
+        </div>
 
         <div class="contenedor__pistas">
 
             <div class="pista" data-audio="ActionRock">
-                <img class="pista__imagen" src="./imagenes/BombinSound.png" alt="Action Rock cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/BombinSound.png" alt="Action Rock cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Action Rock</p>
                     <p class="pista__autor">BombinSound</p>
                 </div>
             </div>
             <div class="pista" data-audio="FunkBreakbeat">
-                <img class="pista__imagen" src="./imagenes/AlexGuz.png" alt="Funk & Breakbeat cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/AlexGuz.png" alt="Funk & Breakbeat cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Funk & Breakbeat</p>
                     <p class="pista__autor">AlexGuz</p>
                 </div>
             </div>
             <div class="pista" data-audio="IndieRock">
-                <img class="pista__imagen" src="./imagenes/JonasBlakewood.png" alt="Indie Rock cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/JonasBlakewood.png" alt="Indie Rock cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Indie Rock</p>
                     <p class="pista__autor">JonasBlakewood</p>
                 </div>
             </div>
             <div class="pista" data-audio="MeetingTheStars">
-                <img class="pista__imagen" src="./imagenes/White_Records.jpg" alt="Meeting the Stars cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/White_Records.jpg" alt="Meeting the Stars cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Meeting the Stars</p>
                     <p class="pista__autor">White_Records</p>
                 </div>
             </div>
             <div class="pista" data-audio="MotivationSportRockTrailer">
-                <img class="pista__imagen" src="./imagenes/AlexGrohl.png" alt="Motivation Sport Rock Trailer cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/AlexGrohl.png" alt="Motivation Sport Rock Trailer cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Motivation Sport Rock Trailer</p>
                     <p class="pista__autor">AlexGrohl</p>
                 </div>
             </div>
             <div class="pista" data-audio="RetroFunk">
-                <img class="pista__imagen" src="./imagenes/prettyjohn1.jpeg" alt="Retro Funk cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/prettyjohn1.jpeg" alt="Retro Funk cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Retro Funk</p>
                     <p class="pista__autor">prettyjohn1</p>
                 </div>
             </div>
             <div class="pista" data-audio="SandBreaker">
-                <img class="pista__imagen" src="./imagenes/Denys_Brodovskyi.png" alt="SandBreaker cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/Denys_Brodovskyi.png" alt="SandBreaker cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">SandBreaker</p>
                     <p class="pista__autor">Denys_Brodovskyi</p>
                 </div>
             </div>
             <div class="pista" data-audio="WinningElevation">
-                <img class="pista__imagen" src="./imagenes/Hot_Dope.png" alt="Winning Elevation cover">
+                <div class="pista__imagen-contenedor">
+                    <img class="pista__imagen" src="./imagenes/Hot_Dope.png" alt="Winning Elevation cover">
+                    <div class="pista__overlay">
+                        <img class="pista__icono play" src="./imagenes/play.svg" alt="Play">
+                        <img class="pista__icono pause" src="./imagenes/pause.svg" alt="Pause">
+                    </div>
+                </div>
                 <div class="pista__info">
                     <p class="pista__titulo">Winning Elevation</p>
                     <p class="pista__autor">Hot_Dope</p>

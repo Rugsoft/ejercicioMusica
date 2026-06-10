@@ -1,5 +1,7 @@
 
 const pistas = document.querySelectorAll(".pista");
+const btnShuffle = document.getElementById("btn-shuffle");
+
 
 let pistaActual = null;
 let audioActual = null;
@@ -12,7 +14,15 @@ pistas.forEach((pista) => {
 
         if (pistaActual === pista) {
             
-            detenerReproduccion();
+            if (audio.paused) {
+                audio.play();
+                pista.classList.remove("pausada");
+                pista.classList.add("activa");
+            } else {
+                audio.pause();
+                pista.classList.remove("activa");
+                pista.classList.add("pausada");
+            }
         } else {
             if (audioActual) {
                 
@@ -41,6 +51,7 @@ function detenerReproduccion() {
     if (pistaActual){
 
         pistaActual.classList.remove("activa");
+        pistaActual.classList.remove("pausada");
     }
 
     audioActual = null;
@@ -57,3 +68,14 @@ function audioReproducir(pista, audio){
         detenerReproduccion();
     };
 }
+
+btnShuffle.addEventListener("click", () => {
+
+    const pistasArray = Array.from(pistas);
+    const pistasDisponibles = pistasArray.filter(pista => pista !== pistaActual)
+
+    const indiceAleatorio = Math.floor(Math.random() * pistasDisponibles.length);
+    const pistaAleatoria = pistasDisponibles[indiceAleatorio];
+    pistaAleatoria.click();
+
+});
