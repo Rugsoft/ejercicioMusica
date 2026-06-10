@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #121212;
+  --text-primary: #ffffff;
+  --text-secondary: #8a8a8a;
+  --accent-color: #00e5ff;
+  --accent-glow: rgba(0, 229, 255, 0.15);
+  --card-bg-hover: rgba(255, 255, 255, 0.05);
+  --card-bg-active: rgba(255, 255, 255, 0.08);
+  --font-family: 'Outfit', sans-serif;
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset de estilos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinear arriba para poder hacer scroll si hay muchas pistas */
+  padding: 4rem 2rem;
+  overflow-y: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Contenedor Principal */
+.container {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Título */
+.container__titulo {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-bottom: 2rem;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 30px var(--accent-glow);
+}
+
+/* Subtítulo */
+.container__subtitulo {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+}
+
+/* Lista de pistas */
+.contenedor__pistas {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Espaciado generoso entre pistas similar a la captura */
+}
+
+/* Pista Individual */
+.pista {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0.5rem;
+  border-radius: 16px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  user-select: none;
+}
+
+/* Efecto hover */
+.pista:hover {
+  background-color: var(--card-bg-hover);
+  transform: translateX(4px); /* Desplazamiento sutil a la derecha */
+}
+
+/* Estado Activo / Reproduciendo (Preparado para cuando se active por JS) */
+.pista.activa {
+  background-color: var(--card-bg-active);
+  box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.15);
+}
+
+/* Portada/Imagen */
+.pista__imagen {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+}
+
+.pista:hover .pista__imagen {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 229, 255, 0.2);
+}
+
+/* Info de la pista (Textos) */
+.pista__info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex-grow: 1;
+}
+
+/* Título de la pista */
+.pista__titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+
+.pista:hover .pista__titulo {
+  color: var(--accent-color);
+}
+
+.pista.activa .pista__titulo {
+  color: var(--accent-color);
+}
+
+/* Autor de la pista */
+.pista__autor {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.pista.activa .pista__autor {
+  color: var(--text-primary);
+  opacity: 0.85;
+}
+
+/* Micro-animación para el scrollbar (si se requiere) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.3);
+}

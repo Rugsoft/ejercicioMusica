@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic Pulse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+
+        <h2 class="container__titulo">SonicPulse</h2>
+        <p class="container__subtitulo">SELECCIONA UNA PISTA PARA ESCUCHAR</p>
+
+        <div class="contenedor__pistas">
+
+            <div class="pista" data-audio="ActionRock">
+                <img class="pista__imagen" src="./imagenes/BombinSound.png" alt="Action Rock cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Action Rock</p>
+                    <p class="pista__autor">BombinSound</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="FunkBreakbeat">
+                <img class="pista__imagen" src="./imagenes/AlexGuz.png" alt="Funk & Breakbeat cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Funk & Breakbeat</p>
+                    <p class="pista__autor">AlexGuz</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="IndieRock">
+                <img class="pista__imagen" src="./imagenes/JonasBlakewood.png" alt="Indie Rock cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Indie Rock</p>
+                    <p class="pista__autor">JonasBlakewood</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="MeetingTheStars">
+                <img class="pista__imagen" src="./imagenes/White_Records.jpg" alt="Meeting the Stars cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Meeting the Stars</p>
+                    <p class="pista__autor">White_Records</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="MotivationSportRockTrailer">
+                <img class="pista__imagen" src="./imagenes/AlexGrohl.png" alt="Motivation Sport Rock Trailer cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Motivation Sport Rock Trailer</p>
+                    <p class="pista__autor">AlexGrohl</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="RetroFunk">
+                <img class="pista__imagen" src="./imagenes/prettyjohn1.jpeg" alt="Retro Funk cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Retro Funk</p>
+                    <p class="pista__autor">prettyjohn1</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="SandBreaker">
+                <img class="pista__imagen" src="./imagenes/Denys_Brodovskyi.png" alt="SandBreaker cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">SandBreaker</p>
+                    <p class="pista__autor">Denys_Brodovskyi</p>
+                </div>
+            </div>
+            <div class="pista" data-audio="WinningElevation">
+                <img class="pista__imagen" src="./imagenes/Hot_Dope.png" alt="Winning Elevation cover">
+                <div class="pista__info">
+                    <p class="pista__titulo">Winning Elevation</p>
+                    <p class="pista__autor">Hot_Dope</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <audio src="./audio/Action Rock - BombinSound.mp3" id="ActionRock"></audio>
+    <audio src="./audio/Funk & Breakbeat - AlexGuz.mp3" id="FunkBreakbeat"></audio>
+    <audio src="./audio/Indie Rock - JonasBlakewood.mp3" id="IndieRock"></audio>
+    <audio src="./audio/Meeting the Stars - White_Records.mp3" id="MeetingTheStars"></audio>
+    <audio src="./audio/Motivation Sport Rock Trailer - AlexGrohl.mp3" id="MotivationSportRockTrailer"></audio>
+    <audio src="./audio/Retro Funk - prettyjohn1.mp3" id="RetroFunk"></audio>
+    <audio src="./audio/SandBreaker - Denys_Brodovskyi.mp3" id="SandBreaker"></audio>
+    <audio src="./audio/Winning Elevation - Hot_Dope.mp3" id="WinningElevation"></audio>
+    <script src="script.js"></script>
+</body>
+</html>
