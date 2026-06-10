@@ -7,38 +7,68 @@ let pistaActual = null;
 let audioActual = null;
 
 pistas.forEach((pista) => {
-    pista.addEventListener("click", () => {
 
         const audioId = pista.getAttribute("data-audio");
         const audio = document.getElementById(audioId);
 
-        if (pistaActual === pista) {
-            
-            if (audio.paused) {
-                audio.play();
-                pista.classList.remove("pausada");
-                pista.classList.add("activa");
-            } else {
-                audio.pause();
-                pista.classList.remove("activa");
-                pista.classList.add("pausada");
-            }
-        } else {
-            if (audioActual) {
-                
-                const confirmar = window.confirm("¿Seguro que quieres parar la pista actual y reproducir esta?");
+        const slider = pista.querySelector(".pista__slider");
+        const tiempoActual = pista.querySelector(".pista__tiempo-actual");
+        const tiempoTotal = pista.querySelector(".pista__tiempo-total");
 
-                if (confirmar) {
+        audio.addEventListener("loadedmetadata", () => {
 
-                    detenerReproduccion();
-                    audioReproducir(pista, audio);
-                }
+            slider.max = audio.duration;
+            tiempoTotal.textContent = formatearTiempo(audio.duration);
+        });
 
-            } else {
-                audioReproducir(pista, audio);
-            }  
+        if (audio.duration) {
+
+            slider.max = audio.duration;
+            tiempoTotal.textContent = formatearTiempo(audio.duration);
         }
-    });
+
+        audio.addEventListener("timeupdate", () => {
+
+            slider.value = audio.currentTime;
+            tiempoActual.textContent = formatearTiempo(audio.currentTime);
+        });
+
+        slider.addEventListener("input", () => {
+
+            audio.currentTime = slider.value;
+        });
+
+        pista.addEventListener("click", (e) => {
+
+            if (e.target.classList.contains('pista__slider')) return;
+
+            if (pistaActual === pista) {
+            
+                if (audio.paused) {
+                    audio.play();
+                    pista.classList.remove("pausada");
+                    pista.classList.add("activa");
+                } else {
+                    audio.pause();
+                    pista.classList.remove("activa");
+                    pista.classList.add("pausada");
+                }
+            } else {
+                if (audioActual) {
+                
+                    const confirmar = window.confirm("¿Seguro que quieres parar la pista actual y reproducir esta?");
+
+                    if (confirmar) {
+
+                        detenerReproduccion();
+                        audioReproducir(pista, audio);
+                    }
+
+                } else {
+                    audioReproducir(pista, audio);
+                }  
+            }
+        });
 });
 
 function detenerReproduccion() {
@@ -79,3 +109,13 @@ btnShuffle.addEventListener("click", () => {
     pistaAleatoria.click();
 
 });
+
+function formatearTiempo(segundos) {
+
+    if (isNaN(segundos)) {
+        return "0:00";
+    }
+    const mins = Math.floor(segundos / 60);
+    const segs = Math.floor(segundos % 60);
+    return `${mins}:${segs < 10 ? '0' : ''}${segs}`;
+}
