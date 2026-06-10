@@ -21,24 +21,11 @@ pistas.forEach((pista) => {
                 if (confirmar) {
 
                     detenerReproduccion();
-                    audio.play();
-                    pista.classList.add("activa");
-                    pistaActual = pista;
-                    audioActual = audio;
-                    audio.onended = () => {
-                        detenerReproduccion();
-                    };
+                    audioReproducir(pista, audio);
                 }
 
             } else {
-                audio.play();
-                pista.classList.add("activa");
-                pistaActual = pista;
-                audioActual = audio;
-                audio.onended = () => {
-                    detenerReproduccion();
-                };
-
+                audioReproducir(pista, audio);
             }  
         }
     });
@@ -58,4 +45,15 @@ function detenerReproduccion() {
 
     audioActual = null;
     pistaActual = null;
+}
+
+function audioReproducir(pista, audio){
+
+    audio.play();
+    pista.classList.add("activa");
+    pistaActual = pista;
+    audioActual = audio;
+    audio.onended = () => {
+        detenerReproduccion();
+    };
 }
