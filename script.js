@@ -40,8 +40,10 @@ pistas.forEach((pista) => {
 
         pista.addEventListener("click", (e) => {
 
-            if (e.target.classList.contains('pista__slider')) return;
+            //if (e.target.classList.contains('pista__slider')) return;
 
+            if (e.target.closest('.pista__progreso')) return;
+            
             if (pistaActual === pista) {
             
                 if (audio.paused) {
