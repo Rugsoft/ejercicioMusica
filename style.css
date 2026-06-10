@@ -106,7 +106,7 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Espaciado generoso entre pistas similar a la captura */
+  gap: 1.5rem; 
 }
 
 /* Pista Individual */
@@ -129,7 +129,7 @@ body {
   transform: translateX(4px); /* Desplazamiento sutil a la derecha */
 }
 
-/* Estado Activo / Reproduciendo (Preparado para cuando se active por JS) */
+/* Estado Activo / Reproduciendo*/
 .pista.activa {
   background-color: var(--card-bg-active);
   box-shadow: inset 0 0 0 1px rgba(0, 229, 255, 0.15);
@@ -263,7 +263,7 @@ body {
   opacity: 1;
 }
 
-/* Micro-animación para el scrollbar (si se requiere) */
+/* Micro-animación para el scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
