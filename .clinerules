@@ -1,0 +1,21 @@
+# Directrices del Proyecto: Librería Digital
+
+## Idioma y Comunicación
+- Comunícate siempre en español de forma concisa y amigable.
+- Los comentarios en el código también deben estar en español.
+
+## Estilo y Estructura de Código (JavaScript)
+- Usa sintaxis moderna de ES6+ (let/const en lugar de var, funciones flecha, template literals, etc.).
+- Nunca dejes variables globales sin declarar.
+- Evita reasignaciones directas a variables que deban ser constantes (como en los filtrados de arrays).
+- Mantén las funciones pequeñas, enfocadas en una sola tarea y bien documentadas.
+
+## Estilo Visual y CSS
+- Usa CSS nativo (Vanilla CSS) y diseño responsivo móvil-primero.
+- Los colores deben seguir una paleta de diseño moderna y premium (evita colores básicos primarios sin opacidad o gradientes).
+- Utiliza variables CSS (`--primary-color`, etc.) definidas en `:root` para mantener la consistencia.
+
+## Reglas de Flujo de Trabajo
+- Revisa siempre los archivos del proyecto antes de hacer nada
+- Explica los cambios que vas a realizar antes de modificar archivos y pide siempre mi confirmación antes de aplicarlos
+- Si detectas un error o mala práctica, avísame amablemente y explícame el motivo y no lo modifiques en el proyecto hasta que tengas mi confirmacion.
