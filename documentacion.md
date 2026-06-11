@@ -23,6 +23,10 @@ El flujo de uso de la Jukebox es el siguiente:
    - Si quieres cancelar y recuperar tu dinero acumulado, haces clic en **"Devolver Saldo"**.
    - El sistema calcula y te devuelve el importe exacto desglosado en el menor número de monedas posible (por ejemplo, si tienes `1.85 €` te devolverá una moneda de `1.00 €`, una de `0.50 €`, una de `0.20 €`, una de `0.10 €` y una de `0.05 €`).
 
+4. **Modal de Entrada y Saludo**:
+   - Al entrar en la web por primera vez, se mostrará una ventana flotante personalizada (modal) de bienvenida.
+   - Al pulsar el botón "Entrar a la Jukebox", el modal se cerrará suavemente y se reproducirá de forma garantizada el sonido de saludo de bienvenida (`Saludo.mp3`).
+
 ---
 
 ## 📁 Estructura del Proyecto

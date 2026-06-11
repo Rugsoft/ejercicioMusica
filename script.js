@@ -199,31 +199,21 @@ function actualizarEstadoPistas() {
 // Inicializar estado de las pistas bloqueadas al cargar la página
 actualizarEstadoPistas();
 
-// Reproducción del audio de saludo al entrar a la web (controlando políticas de autoplay)
-const sonidoSaludo = document.getElementById("sonidoSaludo");
+// Control del Modal de Bienvenida y Audio de Saludo                                                                                                                                                     
+    const welcomeModal = document.getElementById("welcome-modal");
+    const welcomeBtn = document.getElementById("welcome-btn");
 
-function reproducirSaludo() {
-    if (sonidoSaludo) {
-        sonidoSaludo.play()
-            .then(() => {
-                // Si se reproduce con éxito, removemos los escuchadores para que no se repita
-                removerEscuchadoresSaludo();
-            })
-            .catch((error) => {
-                console.log("Autoplay bloqueado. Esperando interacción para reproducir saludo.");
-            });
-    }
-}
+    if (welcomeBtn && welcomeModal) {
 
-function removerEscuchadoresSaludo() {
-    document.removeEventListener("click", reproducirSaludo);
-    document.removeEventListener("keydown", reproducirSaludo);
-}
-
-// Intentar reproducir nada más cargar la página
-window.addEventListener("DOMContentLoaded", () => {
-    reproducirSaludo();
-    // En caso de que el navegador bloquee el autoplay, lo reproducirá al primer clic o tecla
-    document.addEventListener("click", reproducirSaludo);
-    document.addEventListener("keydown", reproducirSaludo);
-});
+        welcomeBtn.addEventListener("click", () => {
+            // Ocultar modal con transición
+            welcomeModal.classList.add("hidden");
+            // Reproducir el saludo inmediatamente
+            if (sonidoSaludo) {
+                sonidoSaludo.currentTime = 0;
+                sonidoSaludo.play().catch((err) => {
+                    console.log("Error al reproducir audio de saludo:", err);
+                });
+            }
+        });
+    }                                 
