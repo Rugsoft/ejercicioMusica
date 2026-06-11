@@ -26,7 +26,7 @@ btnMonedas.forEach((btn) => {
     });
 });
 
-// Devolución del cambio al pulsar cancelar/devolver
+// Devolución del cambio al pulsar devolver
 btnRefund.addEventListener("click", () => {
     if (saldoActual <= 0) {
         window.alert("No tienes saldo acumulado para devolver.");
@@ -38,7 +38,7 @@ btnRefund.addEventListener("click", () => {
     txtSaldo.textContent = "0.00 €";
 });
 
-// Función codiciosa para calcular el desglose del cambio
+// Función para calcular el desglose del cambio
 function calcularCambio(importeMonetario) {
     let detalle = "";
     let importeCentimos = Math.round(importeMonetario * 100);
