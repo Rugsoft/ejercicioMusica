@@ -14,9 +14,10 @@ El flujo de uso de la Jukebox es el siguiente:
 
 2. **Seleccionar y Reproducir Canciones**:
    - Cada canción cuesta **1.00 €**.
-   - Si tienes saldo suficiente y seleccionas una canción nueva, se descuenta **1.00 €** de tu saldo y empieza a sonar.
-   - Una vez comprada la canción, puedes pausarla y reanudarla tantas veces como quieras de forma **gratuita**.
-   - Si intentas reproducir una canción nueva sin saldo suficiente, el reproductor te avisará y no la reproducirá.
+   - **Bloqueo Visual**: Si tu saldo actual es **menor a 1.00 €**, las canciones se atenuarán (opacidad reducida) y el cursor cambiará a no permitido (`not-allowed`) para indicar visualmente que están bloqueadas.
+   - **Excepción de la Pista Activa**: La canción que se está reproduciendo actualmente mantendrá su opacidad normal e interactividad completa (para pausar/reanudar gratuitamente) aunque el saldo esté por debajo de 1.00 €, hasta que termine de sonar.
+   - Si tienes saldo suficiente (>= 1.00 €) y seleccionas una canción nueva, se descuentan **1.00 €** de tu saldo, se reproducirá, y las demás volverán a bloquearse.
+   - Si intentas forzar la reproducción de una canción bloqueada, se mostrará un mensaje de alerta indicando saldo insuficiente.
 
 3. **Devolver Saldo**:
    - Si quieres cancelar y recuperar tu dinero acumulado, haces clic en **"Devolver Saldo"**.

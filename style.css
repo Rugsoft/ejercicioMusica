@@ -529,3 +529,24 @@ body {
     margin-bottom: 0;
   }
 }
+
+/* Pista bloqueada por falta de saldo */
+.pista.bloqueada {
+  opacity: 0.35;
+  cursor: not-allowed;
+  transition: opacity 0.35s ease;
+}
+
+.pista.bloqueada * {
+  cursor: not-allowed !important;
+}
+
+/* Evitar efectos visuales y hover en pistas bloqueadas */
+.pista.bloqueada:hover {
+  background-color: transparent;
+  transform: none;
+}
+
+.pista.bloqueada:hover .pista__titulo {
+  color: var(--text-primary);
+}

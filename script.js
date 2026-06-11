@@ -23,6 +23,7 @@ btnMonedas.forEach((btn) => {
             sonidoMoneda.currentTime = 0;
             sonidoMoneda.play();
         }
+        actualizarEstadoPistas();
     });
 });
 
@@ -36,6 +37,7 @@ btnRefund.addEventListener("click", () => {
     window.alert(`Compra cancelada.\nAquí tienes tu dinero (${saldoActual.toFixed(2)} €):${cambioDesglose}`);
     saldoActual = 0.00;
     txtSaldo.textContent = "0.00 €";
+    actualizarEstadoPistas();
 });
 
 // Función para calcular el desglose del cambio
@@ -142,6 +144,7 @@ function detenerReproduccion() {
 
     audioActual = null;
     pistaActual = null;
+    actualizarEstadoPistas();
 }
 
 function audioReproducir(pista, audio){
@@ -150,6 +153,7 @@ function audioReproducir(pista, audio){
     pista.classList.add("activa");
     pistaActual = pista;
     audioActual = audio;
+    actualizarEstadoPistas();
     audio.onended = () => {
         detenerReproduccion();
     };
@@ -175,3 +179,22 @@ function formatearTiempo(segundos) {
     const segs = Math.floor(segundos % 60);
     return `${mins}:${segs < 10 ? '0' : ''}${segs}`;
 }
+
+// Función para bloquear o desbloquear las pistas visualmente según el saldo
+function actualizarEstadoPistas() {
+    pistas.forEach((pista) => {
+        if (pista === pistaActual) {
+            // La pista activa nunca se bloquea
+            pista.classList.remove("bloqueada");
+        } else if (saldoActual < 1.00) {
+            // Se bloquea si no hay saldo suficiente (1.00 €) y no está reproduciendo
+            pista.classList.add("bloqueada");
+        } else {
+            // Se desbloquea si hay saldo suficiente
+            pista.classList.remove("bloqueada");
+        }
+    });
+}
+
+// Inicializar estado de las pistas bloqueadas al cargar la página
+actualizarEstadoPistas();
