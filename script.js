@@ -1,10 +1,59 @@
 
+// Elementos de la interfaz de usuario
 const pistas = document.querySelectorAll(".pista");
 const btnShuffle = document.getElementById("btn-shuffle");
 
+// Elementos del sistema Jukebox
+const btnMonedas = document.querySelectorAll(".btn-moneda");
+const btnRefund = document.getElementById("btn-refund");
+const txtSaldo = document.getElementById("jukebox-saldo");
+const sonidoMoneda = document.getElementById("sonidoMoneda");
 
+let saldoActual = 0.00;
 let pistaActual = null;
 let audioActual = null;
+
+// Escuchar la inserción de saldo
+btnMonedas.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        const valor = Number(e.currentTarget.value);
+        saldoActual += valor;
+        txtSaldo.textContent = `${saldoActual.toFixed(2)} €`;
+        if (sonidoMoneda) {
+            sonidoMoneda.currentTime = 0;
+            sonidoMoneda.play();
+        }
+    });
+});
+
+// Devolución del cambio al pulsar cancelar/devolver
+btnRefund.addEventListener("click", () => {
+    if (saldoActual <= 0) {
+        window.alert("No tienes saldo acumulado para devolver.");
+        return;
+    }
+    const cambioDesglose = calcularCambio(saldoActual);
+    window.alert(`Compra cancelada.\nAquí tienes tu dinero (${saldoActual.toFixed(2)} €):${cambioDesglose}`);
+    saldoActual = 0.00;
+    txtSaldo.textContent = "0.00 €";
+});
+
+// Función codiciosa para calcular el desglose del cambio
+function calcularCambio(importeMonetario) {
+    let detalle = "";
+    let importeCentimos = Math.round(importeMonetario * 100);
+    const monedasCentimos = [500, 200, 100, 50, 20, 10, 5];
+    const monedasValores = [5.00, 2.00, 1.00, 0.50, 0.20, 0.10, 0.05];
+    
+    for (let i = 0; i < monedasCentimos.length; i++) {
+        if (importeCentimos >= monedasCentimos[i]) {
+            let veces = Math.floor(importeCentimos / monedasCentimos[i]);
+            importeCentimos = importeCentimos % monedasCentimos[i];
+            detalle += `\n- ${veces} x ${monedasValores[i].toFixed(2)} €`;
+        }
+    }
+    return detalle;
+}
 
 pistas.forEach((pista) => {
 
@@ -40,12 +89,10 @@ pistas.forEach((pista) => {
 
         pista.addEventListener("click", (e) => {
 
-            //if (e.target.classList.contains('pista__slider')) return;
-
             if (e.target.closest(".pista__progreso")) return;
 
             if (pistaActual === pista) {
-            
+                // Control gratuito (pausar o reanudar pista activa actual)
                 if (audio.paused) {
                     audio.play();
                     pista.classList.remove("pausada");
@@ -56,19 +103,26 @@ pistas.forEach((pista) => {
                     pista.classList.add("pausada");
                 }
             } else {
-                if (audioActual) {
-                
-                    const confirmar = window.confirm("¿Seguro que quieres parar la pista actual y reproducir esta?");
-
-                    if (confirmar) {
-
+                // Seleccionar una pista nueva requiere cobrar 1.00 €
+                if (saldoActual >= 1.00) {
+                    const iniciarNuevaPista = () => {
+                        saldoActual -= 1.00;
+                        txtSaldo.textContent = `${saldoActual.toFixed(2)} €`;
                         detenerReproduccion();
                         audioReproducir(pista, audio);
-                    }
+                    };
 
+                    if (audioActual) {
+                        const confirmar = window.confirm("¿Seguro que quieres parar la pista actual y reproducir esta? (Se descontará 1.00 €)");
+                        if (confirmar) {
+                            iniciarNuevaPista();
+                        }
+                    } else {
+                        iniciarNuevaPista();
+                    }
                 } else {
-                    audioReproducir(pista, audio);
-                }  
+                    window.alert(`Saldo insuficiente. Cada canción cuesta 1.00 €.\nSaldo actual: ${saldoActual.toFixed(2)} €.\n¡Introduce más monedas!`);
+                }
             }
         });
 });

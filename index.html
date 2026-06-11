@@ -21,6 +21,28 @@
             </button>
         </div>
 
+        <div class="jukebox-panel">
+            <div class="jukebox-panel__info">
+                <div class="jukebox-panel__saldo-contenedor">
+                    <span class="jukebox-panel__saldo-etiqueta">SALDO DISPONIBLE</span>
+                    <span class="jukebox-panel__saldo-valor" id="jukebox-saldo">0.00 €</span>
+                </div>
+                <p class="jukebox-panel__nota">Coste por canción: 1.00 €</p>
+            </div>
+            <div class="jukebox-panel__controles">
+                <div class="jukebox-panel__monedas">
+                    <button class="btn-moneda" value="0.05">0.05€</button>
+                    <button class="btn-moneda" value="0.10">0.10€</button>
+                    <button class="btn-moneda" value="0.20">0.20€</button>
+                    <button class="btn-moneda" value="0.50">0.50€</button>
+                    <button class="btn-moneda" value="1.00">1.00€</button>
+                    <button class="btn-moneda" value="2.00">2.00€</button>
+                    <button class="btn-moneda btn-moneda--billete" value="5.00">5.00€</button>
+                </div>
+                <button class="btn-refund" id="btn-refund">Devolver Saldo</button>
+            </div>
+        </div>
+
         <div class="contenedor__pistas">
 
             <div class="pista" data-audio="ActionRock">
@@ -180,6 +202,7 @@
     <audio src="./audio/Retro Funk - prettyjohn1.mp3" id="RetroFunk"></audio>
     <audio src="./audio/SandBreaker - Denys_Brodovskyi.mp3" id="SandBreaker"></audio>
     <audio src="./audio/Winning Elevation - Hot_Dope.mp3" id="WinningElevation"></audio>
+    <audio src="./audio/sonidoMoneda.mp3" id="sonidoMoneda"></audio>
     <script src="script.js"></script>
 </body>
 </html>
