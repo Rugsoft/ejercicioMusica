@@ -42,8 +42,8 @@ pistas.forEach((pista) => {
 
             //if (e.target.classList.contains('pista__slider')) return;
 
-            if (e.target.closest('.pista__progreso')) return;
-            
+            if (e.target.closest(".pista__progreso")) return;
+
             if (pistaActual === pista) {
             
                 if (audio.paused) {
