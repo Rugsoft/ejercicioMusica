@@ -13,6 +13,15 @@ let saldoActual = 0.00;
 let pistaActual = null;
 let audioActual = null;
 
+// Sistema de Ranking de reproducciones
+let reproducciones = {};
+
+// Cargar estadísticas guardadas del localStorage
+const datosGuardados = localStorage.getItem("jukebox_reproducciones");
+if (datosGuardados) {
+    reproducciones = JSON.parse(datosGuardados);
+}
+
 // Escuchar la inserción de saldo
 btnMonedas.forEach((btn) => {
     btn.addEventListener("click", (e) => {
@@ -153,6 +162,13 @@ function audioReproducir(pista, audio){
     pista.classList.add("activa");
     pistaActual = pista;
     audioActual = audio;
+
+    // Incrementar el contador de la canción que empezó a sonar
+    const titulo = pista.querySelector(".pista__titulo").textContent;
+    reproducciones[titulo] = (reproducciones[titulo] || 0) + 1;
+    localStorage.setItem("jukebox_reproducciones", JSON.stringify(reproducciones));
+    actualizarRankingUI();
+
     actualizarEstadoPistas();
     audio.onended = () => {
         detenerReproduccion();
@@ -196,24 +212,76 @@ function actualizarEstadoPistas() {
     });
 }
 
+// Inicializar todas las canciones a 0 si no están registradas
+pistas.forEach((pista) => {
+    const titulo = pista.querySelector(".pista__titulo").textContent;
+    if (reproducciones[titulo] === undefined) {
+        reproducciones[titulo] = 0;
+    }
+});
+
+// Función para actualizar y renderizar el panel del Top 5
+function actualizarRankingUI() {
+    const rankingLista = document.getElementById("ranking-lista");
+    if (!rankingLista) return;
+
+    // Convertir el objeto de estadísticas en un array y ordenarlo de mayor a menor
+    const cancionesArray = Object.entries(reproducciones);
+    cancionesArray.sort((a, b) => b[1] - a[1]);
+
+    // Filtrar el top 5
+    const top5 = cancionesArray.slice(0, 5);
+
+    // Limpiar y maquetar el ranking
+    rankingLista.innerHTML = "";
+    top5.forEach((cancion, index) => {
+        const [titulo, count] = cancion;
+
+        // Encontrar el autor correspondiente a esta canción
+        let autor = "";
+        pistas.forEach((pista) => {
+            if (pista.querySelector(".pista__titulo").textContent === titulo) {
+                autor = pista.querySelector(".pista__autor").textContent;
+            }
+        });
+
+        const li = document.createElement("li");
+        li.className = "ranking-panel__item";
+        li.innerHTML = `
+            <div class="ranking-panel__puesto">${index + 1}</div>
+            <div class="ranking-panel__info">
+                <span class="ranking-panel__cancion-titulo">${titulo}</span>
+                <span class="ranking-panel__cancion-autor">${autor}</span>
+            </div>
+            <div class="ranking-panel__contador">
+                <span class="ranking-panel__numero">${count}</span>
+                <span class="ranking-panel__veces">${count === 1 ? 'reproducción' : 'reproducciones'}</span>
+            </div>
+        `;
+        rankingLista.appendChild(li);
+    });
+}
+
 // Inicializar estado de las pistas bloqueadas al cargar la página
 actualizarEstadoPistas();
 
-// Control del Modal de Bienvenida y Audio de Saludo                                                                                                                                                     
-    const welcomeModal = document.getElementById("welcome-modal");
-    const welcomeBtn = document.getElementById("welcome-btn");
+// Inicializar la interfaz del Top 5
+actualizarRankingUI();
 
-    if (welcomeBtn && welcomeModal) {
+// Control del Modal de Bienvenida y Audio de Saludo
+const welcomeModal = document.getElementById("welcome-modal");
+const welcomeBtn = document.getElementById("welcome-btn");
 
-        welcomeBtn.addEventListener("click", () => {
-            // Ocultar modal con transición
-            welcomeModal.classList.add("hidden");
-            // Reproducir el saludo inmediatamente
-            if (sonidoSaludo) {
-                sonidoSaludo.currentTime = 0;
-                sonidoSaludo.play().catch((err) => {
-                    console.log("Error al reproducir audio de saludo:", err);
-                });
-            }
-        });
-    }                                 
+if (welcomeBtn && welcomeModal) {
+    welcomeBtn.addEventListener("click", () => {
+        // Ocultar modal con transición
+        welcomeModal.classList.add("hidden");
+        // Reproducir el saludo inmediatamente
+        if (sonidoSaludo) {
+            sonidoSaludo.currentTime = 0;
+            sonidoSaludo.play().catch((err) => {
+                console.log("Error al reproducir audio de saludo:", err);
+            });
+        }
+    });
+}                                 
